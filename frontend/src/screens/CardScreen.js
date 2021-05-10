@@ -1,8 +1,16 @@
-import React from 'react'
+import React, { useEffect } from 'react'
+import { useDispatch } from 'react-redux'
+import { addToCard } from '../actions/cardAction';
+
 
 function CardScreen(props) {
     const productId = props.match.params.id;
-    const qty = props.location.search ? Number(props.location.search.split('=')[1]) : 1
+    const qty = props.location.search ? Number(props.location.search.split('=')[1]) : 1;
+
+    const dispatch = useDispatch()
+    useEffect(() => {
+        dispatch(addToCard(productId, qty))
+    }, [dispatch, productId, qty]);
     return (
         <div>
             <h1>Card Screen</h1>
