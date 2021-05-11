@@ -6,7 +6,7 @@ import userRouter from './routers/userRouter.js'
 
 const app = express();
 
-mongoose.connect(process.env.MONGODB_URL || 'mongodb://localhost/amazona', {
+mongoose.connect('mongodb+srv://admin:<password>@cluster0.31v5o.mongodb.net/myFirstDatabase?retryWrites=true&w=majority' || 'mongodb://localhost/amazona', {
     useNewUrlParser: true,
     useUnifiedTopology: true,
     useCreateIndex: true
