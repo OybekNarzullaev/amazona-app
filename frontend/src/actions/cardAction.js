@@ -1,4 +1,4 @@
-import { CART_ADD_ITEM } from "../constants/cardConstants";
+import { CART_ADD_ITEM, CART_REMOVE_ITEM } from "../constants/cardConstants";
 import Axios from 'axios'
 // cardAction funksiyasi
 export const addToCard = (productId, qty) => async (dispatch, getState) => {
@@ -22,4 +22,12 @@ export const addToCard = (productId, qty) => async (dispatch, getState) => {
     // itemlarni localStorage ga saqlash kerak
     // chunki page refresh qilinganda card itemlar o'chib ketadi
     localStorage.setItem('cardItems', JSON.stringify(getState().card.cardItems))
+}
+
+export const removeFromCard = (productId) => (dispatch, setState) => {
+    dispatch({
+        type: CART_REMOVE_ITEM,
+        payload: productId
+    });
+    localStorage.setItem('cardItems', JSON.stringify(setState().card.cardItems))
 }

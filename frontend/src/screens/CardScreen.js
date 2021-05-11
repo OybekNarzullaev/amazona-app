@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-import { addToCard } from "../actions/cardAction";
+import { addToCard, removeFromCard } from "../actions/cardAction";
 import MessageBox from "../components/MessageBox";
 
 function CardScreen(props) {
@@ -22,6 +22,7 @@ function CardScreen(props) {
 
   const removeFromCartHandler = (id) => {
     //delete action
+    dispatch(removeFromCard(id))
   };
 
   const checkoutHandler = () => {

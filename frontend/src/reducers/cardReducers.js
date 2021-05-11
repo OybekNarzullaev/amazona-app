@@ -1,4 +1,4 @@
-import { CART_ADD_ITEM } from "../constants/cardConstants";
+import { CART_ADD_ITEM, CART_REMOVE_ITEM } from "../constants/cardConstants";
 
 export const cardReducer = (state = { cardItems: [] }, action) => {
     switch (action.type) {
@@ -22,7 +22,14 @@ export const cardReducer = (state = { cardItems: [] }, action) => {
             else {
                 return { ...state, cardItems: [...state.cardItems, item] }
             }
+        case CART_REMOVE_ITEM:
+            return {
+                ...state,
+                // card itemga qayta action.payloaddagi id ga teng bo'lmagan productlarni filterlash
+                cardItems: state.cardItems.filter(x => x.product !== action.payload)
+            }
         default:
             return state;
     }
 };
+
