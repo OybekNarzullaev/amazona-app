@@ -34,7 +34,7 @@ export const detailsProduct = (productId) => async (dispatch) => {
         console.log('xato bu yerda!!');
         dispatch({
             type: PRODUCT_DETAILS_FAIL,
-            payload: error.response && error.message
+            payload: error.response && error.response.data.message
                 ? error.response.data.message
                 : error.message
         })
