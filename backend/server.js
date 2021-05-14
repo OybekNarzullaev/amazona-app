@@ -24,6 +24,7 @@ app.use(morgan("tiny"));
 
 app.use("/api/users", userRouter);
 app.use("/api/products", productRouter);
+
 app.get("/", (req, res) => {
   res.send("Server is ready");
 });

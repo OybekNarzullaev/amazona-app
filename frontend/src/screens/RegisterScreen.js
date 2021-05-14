@@ -1,13 +1,15 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-import { signin } from "../actions/userActions";
+import { register } from "../actions/userActions";
 import LoadingBox from "../components/LoadingBox";
 import MessageBox from "../components/MessageBox";
-function SigninScreen(props) {
+function RegisterScreen(props) {
   //email va password uchun hozircha react hook yozib turamiz
+  const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
 
   const redirect = props.location.search
     ? props.location.search.split("=")[1]
@@ -15,16 +17,19 @@ function SigninScreen(props) {
   console.log(redirect);
 
   // muvafaqqiyatli signin qilingan user ma'lumotlarini olish
-  const userSignin = useSelector((state) => state.userSignin);
-  const { userInfo } = userSignin;
-  const { loading, error } = userSignin;
+  const userRegister = useSelector((state) => state.userRegister);
+  const { userInfo, loading, error } = userRegister;
 
   const dispatch = useDispatch();
   const submitHandler = (event) => {
     // bu submit tugmasi bosilganda sahifa refrech bo'lmasligi uchun
     event.preventDefault();
     // to do: action
-    dispatch(signin(email, password));
+    if (password !== confirmPassword) {
+      alert(`parolni to'g'ri takrorlang`);
+    } else {
+      dispatch(register(name, email, password));
+    }
   };
 
   useEffect(() => {
@@ -37,10 +42,21 @@ function SigninScreen(props) {
     <div>
       <form className="form" onSubmit={submitHandler}>
         <div>
-          <h1>Sign In</h1>
+          <h1>Create Account</h1>
         </div>
         {loading && <LoadingBox></LoadingBox>}
         {error && <MessageBox variant="danger">{error}</MessageBox>}
+        <div>
+          <label htmlFor="name">Name</label>
+          <input
+            type="text"
+            id="name"
+            placeholder="Enter your name"
+            required
+            onChange={(e) => setName(e.target.value)}
+          ></input>
+        </div>
+        <div></div>
         <div>
           <label htmlFor="email">Email address</label>
           <input
@@ -62,19 +78,32 @@ function SigninScreen(props) {
           ></input>
         </div>
         <div>
+          <label htmlFor="comfirmPassword">Confirm Password</label>
+          <input
+            type="password"
+            id="comfirmPassword"
+            placeholder="Enter your confirm password"
+            required
+            onChange={(e) => setConfirmPassword(e.target.value)}
+          ></input>
+        </div>
+        <div>
           <label />
           <button className="primary" type="submit">
-            Sign In
+            Register
           </button>
         </div>
         <div>
           <label />
-          New user?{" "}
-          <Link to={`/register?redirect=${redirect}`}>Create your account</Link>
+          Alredy have your account?{" "}
+          {
+            // Linkni ma'nosi siginin qilingan bo'lsa redurectni muhit o'zgaruvchisiga o'tkazish
+          }
+          <Link to={`/signin?redirect=${redirect}`}>Sign in</Link>
         </div>
       </form>
     </div>
   );
 }
 
-export default SigninScreen;
+export default RegisterScreen;

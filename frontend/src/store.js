@@ -7,7 +7,7 @@ import {
   productDetailsReducer,
   productListReducer,
 } from "./reducers/productReducers";
-import { userSigninReducer } from "./reducers/userReducer";
+import { userRegisterReducer, userSigninReducer } from "./reducers/userReducer";
 
 // holatni inital qilish
 const initialState = {
@@ -30,6 +30,7 @@ const reducer = combineReducers({
   productDetails: productDetailsReducer,
   card: cardReducer,
   userSignin: userSigninReducer,
+  userRegister: userRegisterReducer,
 });
 const composeEnhacer = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 // baza shakllantirish

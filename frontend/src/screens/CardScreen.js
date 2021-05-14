@@ -22,11 +22,14 @@ function CardScreen(props) {
 
   const removeFromCartHandler = (id) => {
     //delete action
-    dispatch(removeFromCard(id))
+    dispatch(removeFromCard(id));
   };
 
+  // funksiya manosi:
+  // signin qilingan bo'lsa shippingga o'tish bo'lmasa signin ga
+  // va uni props.historyga saqlab qo'yish
   const checkoutHandler = () => {
-    props.history.push("/singin?redirect=shipping");
+    props.history.push("/signin?redirect=shipping");
   };
   return (
     <div className="row top">
