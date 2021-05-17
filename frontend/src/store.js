@@ -22,6 +22,9 @@ const initialState = {
     cardItems: localStorage.getItem("cardItems") // localStorage.getItem('cardItems') mavjud bo'lsa qaytarish
       ? JSON.parse(localStorage.getItem("cardItems"))
       : [], //aks holsa bo'sh qiymat qaytarish
+    shippingAddress: localStorage.getItem("shippingAddress")
+      ? JSON.parse(localStorage.getItem("shippingAddress"))
+      : {},
   },
 };
 // reducer funksiya backenddan kelgan ma'lumotlar bo'yicha combineReducers funksiyasi yordamida

@@ -229,3 +229,16 @@ img.large {
 .dropdown:hover .dropdown-content {
   display: block;
 }
+
+/*checkout*/
+.checkout-steps > div {
+  padding: 1rem;
+  border-top: 0.3rem #c0c0c0 solid;
+  flex: 1;
+  color: #c0c0c0;
+  font-weight: bold;
+}
+.checkout-steps > div.active {
+  border-top: #ff8000 solid;
+  color: #ff8000;
+}
