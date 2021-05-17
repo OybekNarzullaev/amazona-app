@@ -1,6 +1,7 @@
 import {
   CART_ADD_ITEM,
   CART_REMOVE_ITEM,
+  CART_SAVE_PAYMENT_METHOD,
   CART_SAVE_SHIPPING_ADDRESS,
 } from "../constants/cardConstants";
 import Axios from "axios";
@@ -44,4 +45,12 @@ export const saveShippingAddress = (data) => (dispatch) => {
   });
   // reload bo'lganida o'chib ketmasligi uchun localstorage ga saqlash
   localStorage.setItem("shippingAddress", JSON.stringify(data));
+};
+
+// payment
+export const savePaypalMethod = (data) => (dispatch) => {
+  dispatch({
+    type: CART_SAVE_PAYMENT_METHOD,
+    payload: data,
+  });
 };
