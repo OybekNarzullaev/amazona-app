@@ -28,7 +28,7 @@ function PaymentScreen(props) {
             <input
               type="radio"
               id="paypal"
-              value="Paypal"
+              value="PayPal"
               name="paymentMethod"
               required
               checked

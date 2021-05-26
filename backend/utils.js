@@ -17,3 +17,23 @@ export const generateToken = (user) => {
     }
   );
 };
+
+export const isAuth = (req, res, next) => {
+  const authorization = req.body.authorization;
+  if (authorization) {
+    const token = authorization.splice(7, authorization.length); // 7-dan keyingilarni o'chirish
+    jwt.verify(
+      token,
+      process.env.JWT_SECRET || "somethingsecret",
+      (err, decode) => {
+        if (err) {
+          res.status(401).send({ message: "Invalid token" });
+        } else {
+          (req.user = decode), next();
+        }
+      }
+    );
+  } else {
+    res.status(401).send({ message: "No token" });
+  }
+};

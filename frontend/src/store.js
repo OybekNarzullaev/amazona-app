@@ -3,6 +3,7 @@ import { applyMiddleware, combineReducers, compose, createStore } from "redux";
 // chrome ga chiqarish uchun
 import thunk from "redux-thunk";
 import { cardReducer } from "./reducers/cardReducers";
+import { orderCreateReducer } from "./reducers/orderReducers";
 import {
   productDetailsReducer,
   productListReducer,
@@ -25,7 +26,7 @@ const initialState = {
     shippingAddress: localStorage.getItem("shippingAddress")
       ? JSON.parse(localStorage.getItem("shippingAddress"))
       : {},
-    paymentMethod: "Paypal",
+    paymentMethod: "PayPal",
   },
 };
 // reducer funksiya backenddan kelgan ma'lumotlar bo'yicha combineReducers funksiyasi yordamida
@@ -35,6 +36,7 @@ const reducer = combineReducers({
   card: cardReducer,
   userSignin: userSigninReducer,
   userRegister: userRegisterReducer,
+  orderCreate: orderCreateReducer,
 });
 const composeEnhacer = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 // baza shakllantirish
